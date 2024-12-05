@@ -97,3 +97,8 @@
         margin-top: 50px;
     }
 }
+@media (max-width:700px) {
+    .col-lg-4 img {
+        width: 100%;
+    }
+}
