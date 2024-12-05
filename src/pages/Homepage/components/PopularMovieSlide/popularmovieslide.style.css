@@ -1,0 +1,22 @@
+.slide-spin{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 100px;
+    height: 100px;
+    
+}
+.carousel-container {
+    overflow: hidden;
+    height: 440px;
+}
+.custom-item-class {
+    margin: 0 25px;
+}
+
+@media (max-width:600px) {
+    h3{
+        text-align: center;
+    }
+}

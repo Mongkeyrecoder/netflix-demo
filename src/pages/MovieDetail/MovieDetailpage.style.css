@@ -1,0 +1,99 @@
+.content {
+    padding-left: 100px;
+}
+
+.content button {
+    margin: 5px;
+}
+
+.content button:first-child {
+    margin-left: 0;
+}
+
+.rate img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.rate span {
+    margin-right: 15px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.overview {
+    border-top: 0.1px solid white;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-bottom: 0.1px solid white;
+    padding-bottom: 20px;
+}
+
+.card-content {
+    width: 100%;
+    padding:1px;
+    background-color: black;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 5rem auto;
+    padding-bottom: 3rem;
+    color: white;
+    border: 1px solid red;
+}
+.card-content h1 {
+    margin-left: 13px;
+}
+.card-description {
+    font-size: 20px;
+    padding: 0 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rate  {
+    display: flex;
+    gap:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.card-content__more-btn {
+    appearance: none;
+    border: 1px solid white;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    cursor: pointer;
+    margin: 1rem;
+    color: white;
+}
+
+.card-content__more-btn::before {
+    content: '더보기';
+}
+
+.card-content__more-btn:checked::before {
+    content: '닫기';
+}
+
+.card-description:has(+ .card-content__more-btn:checked) {
+    -webkit-line-clamp: unset
+}
+.offcan{
+    background-color: black !important;
+    color: white;
+}
+.btn-close {
+    color: white !important;
+    background-color: white;
+}
+@media (max-width:993px) {
+    .content {
+        padding-left: 0;
+        margin-top: 50px;
+    }
+}

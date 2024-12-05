@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+}
+.movie-card{
+    width: 220px;
+    height: 330px;
+    background-size: cover;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 41, 41, 0.9);
+    opacity: 0;
+    transition: all 1s;
+    color: white;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3px;
+}
+.overlay:hover {
+    opacity: 1 !important;
+}
+.movie-card:hover {
+    transform: scale(1.3) translateZ(20px);
+    z-index: 2;
+}
+.overlay h1 {
+    font-size: 20px;
+}
+.etc {
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.etc img {
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+}
+
+.rate span {
+    display: inline-block;
+    
+    width: 20px !important;
+    text-align: center;
+    color: red !important;
+    text-align: center;
+}
+.pagination {
+    margin-top: 40px;
+}
+
+.img-card {
+    width: 20px !important;
+    height:20px !important;
+    position: relative;
+    top:13px;
+}
