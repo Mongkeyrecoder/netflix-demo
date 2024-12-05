@@ -9,7 +9,7 @@ export const useMovieGenreQuery=()=>{
     return useQuery({
         queryKey:['movie-genre'],
         queryFn:fetchMovieGenre,
-        retry:1,
+        retry:3,
         select:(result)=>result.data.genres,
         staleTime:3000000
     })

@@ -9,7 +9,8 @@ export const useReviewsQuery=(id)=>{
     return useQuery({
         queryKey:['reveiws'],
         queryFn:()=>fetchApi(id),
-        retry:1,
+        retry:3,
+        staleTime:6000,
         
     })
 }

@@ -37,7 +37,7 @@ const MovieDetailpage = () => {
         queryKey: ['recommendation'], queryFn: () => fetchRecommendation(id)
       }
     ],
-    retry: 1,
+    retry: 3,
     staleTime: 60000,
     combine: (results) => {
       return (

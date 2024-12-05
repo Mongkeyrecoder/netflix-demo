@@ -9,7 +9,8 @@ const useUpcomingMovie=()=>{
     return useQuery({
         queryKey:['upcomingMovie'],
         queryFn:UpcomingMovieApi,
-        retry:1,
+        retry:3,
+        staleTime:60000,
         select:(result)=>result.data.results
     })
 }

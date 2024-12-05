@@ -9,7 +9,8 @@ const useTopRatedQuery=()=>{
     return useQuery({
         queryKey:['top'],
         queryFn:fetchApi,
-        retry:1,
+        retry:3,
+        staleTime:60000,
         select:(result)=>result.data.results
     })
 }

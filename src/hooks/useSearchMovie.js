@@ -13,6 +13,8 @@ export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
     return useQuery({
         queryKey: ['movie-search', keyword, page],
         queryFn: () => fetchSearchMovie(keyword, page),
+        retry:3,
+        staleTime:60000,
         select: (result) => {
             let copy = [...result.data.results];
             let copy2=[]
