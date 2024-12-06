@@ -11,6 +11,6 @@ export const useMovieGenreQuery=()=>{
         queryFn:fetchMovieGenre,
         retry:3,
         select:(result)=>result.data.genres,
-        staleTime:3000000
+       
     })
 }

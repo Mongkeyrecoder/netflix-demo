@@ -3,18 +3,17 @@ import axios from "axios";
 import api from "../utils/api";
 
 const fetchSearchMovie = (keyword, page) => {
-    console.log('keyword', keyword)
-    console.log('page', page)
+  
     return keyword ? api.get(`/3/search/movie?query=${keyword}&page=${page}`) : api.get(`/3/movie/popular?language=en-US&page=1&page=${page}`)
 }
 
 export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
-    console.log('UD??', UD)
+   
     return useQuery({
         queryKey: ['movie-search', keyword, page],
         queryFn: () => fetchSearchMovie(keyword, page),
         retry:3,
-        staleTime:60000,
+        
         select: (result) => {
             let copy = [...result.data.results];
             let copy2=[]
@@ -27,8 +26,7 @@ export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
                 })
                })
                copy=[...copy2]
-            }
-            if (UD == 'Down') {
+               if (UD == 'Down') {
                 copy = copy.sort((a, b) => {
                     return a.popularity - b.popularity
                 })
@@ -42,7 +40,11 @@ export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
                 result.data.results=copy
                 return result.data
             }
-
+            }
+            else {
+                return  result.data
+            }
+          
         }
     })
 }

@@ -10,7 +10,7 @@ export const usePopularMoviesQuery=()=>{
         queryKey:['movie-popular'],
         queryFn:fetchPopularMovies,
         retry:3,
-        staleTime:6000,
+        
         select:(result)=>result.data
     })
 }

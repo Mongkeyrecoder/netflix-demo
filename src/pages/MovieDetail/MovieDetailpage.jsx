@@ -1,4 +1,4 @@
-import React, { StrictMode, useState } from 'react'
+import React, { StrictMode, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useMovieDetailQuery } from '../../hooks/useMovieDetail';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -26,7 +26,7 @@ const MovieDetailpage = () => {
   const fetchRecommendation = (id) => {
     return api.get(`/3/movie/${id}/recommendations`)
   }
-  const { data, isLoading, isError, error } = useQueries({
+  const { data } = useQueries({
     queries: [
       {
         queryKey: ['detail'], queryFn: () => fetchDetail(id)
@@ -50,14 +50,43 @@ const MovieDetailpage = () => {
       )
     }
   })
-  let navigate=useNavigate()
-  if(data[0]===undefined || data[1]==undefined || data[2]==undefined){
+  let navigate = useNavigate()
+  const gotoHome = () => {
     navigate('/')
   }
+
+  if (data[0] == undefined) {
+    return (
+      <div>
+        <h1>없는결과값입니다</h1>
+        <Button style={{marginRight:"10px"}} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
+        <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
+      </div>
+    )
+  }
+  if (data[1] == undefined) {
+    return (
+      <div>
+        <h1>없는결과값입니다</h1>
+        <Button style={{marginRight:"10px"}} onClick={() => {data.refetch() }} variant="danger">재호출</Button>
+        <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
+      </div>
+    )
+  }
+  if (data[2] == undefined) {
+    return (
+      <div>
+        <h1>없는결과값입니다</h1>
+        <Button style={{marginRight:"10px"}} onClick={() => {data.refetch() }} variant="danger">재호출</Button>
+        <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
+      </div>
+    )
+  }
+
   if (data[0] == undefined || '') {
     return <Spinner animation="border" role="status">
-    <span className="visually-hidden">Loading...</span>
-  </Spinner>
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   }
 
   let money = String(data[0].data.revenue)
@@ -91,9 +120,10 @@ const MovieDetailpage = () => {
       bugetNew += budget[i]
     }
   }
-  console.log('movieDetail ',data)
+  console.log('movieDetail ', data)
   let rcmovie = data[2].data.results
   let reviews = data[1].data.results
+
   return (
     <div>
       <Container>
@@ -134,7 +164,7 @@ const MovieDetailpage = () => {
                 <Button variant="warning">Run TIME</Button> <span>{data[0].data.runtime}</span>
               </div>
               <div>
-              <OffCanvasExample placement={'bottom'} name={'추천영화'} rcmovie={rcmovie} />
+                <OffCanvasExample placement={'bottom'} name={'추천영화'} rcmovie={rcmovie} />
               </div>
             </div>
 
@@ -144,7 +174,7 @@ const MovieDetailpage = () => {
           </Col>
         </Row>
 
-       
+
       </Container>
       <Reviews review={reviews} />
 
@@ -180,7 +210,7 @@ function Reviews({ review }) {
   )
 }
 function OffCanvasExample({ name, rcmovie, ...props }) {
-  
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -208,7 +238,7 @@ function OffCanvasExample({ name, rcmovie, ...props }) {
       <Button variant="warning" onClick={handleShow}>
         {name}
       </Button>
-      <Offcanvas  className='offcan' show={show} onHide={handleClose} {...props}>
+      <Offcanvas className='offcan' show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton >
           <Offcanvas.Title>추천영화</Offcanvas.Title>
         </Offcanvas.Header>
