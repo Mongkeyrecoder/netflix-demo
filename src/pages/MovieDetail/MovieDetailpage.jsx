@@ -5,6 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useReviewsQuery } from '../../hooks/useRevies';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import Carousel from 'react-multi-carousel';
+import Spinner from 'react-bootstrap/Spinner';
 
 import api from '../../utils/api';
 import Badge from 'react-bootstrap/Badge';
@@ -54,7 +55,9 @@ const MovieDetailpage = () => {
     navigate('/')
   }
   if (data[0] == undefined || '') {
-    return <h1>데이터 없습니다</h1>
+    return <Spinner animation="border" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </Spinner>
   }
 
   let money = String(data[0].data.revenue)
