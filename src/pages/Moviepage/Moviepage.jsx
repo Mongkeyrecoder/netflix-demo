@@ -24,7 +24,7 @@ const Moviepage = ({ item }) => {
   let navigate = useNavigate()
   const { data, isLoading, isError, error, refetch } = useSearchMovieQuery({ keyword, page, UD, genId })
   const gotoHome=()=>{
-    console.log('home')
+    navigate('/')
   }
   useEffect(() => {
     setpage(1)
@@ -44,7 +44,7 @@ const Moviepage = ({ item }) => {
     return (
       <div>
         <h1>에러입니다</h1>
-        <Button onClick={() => { refetch() }} variant="danger">재호출</Button>
+        <Button style={{marginRight:"10px"}} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
 
