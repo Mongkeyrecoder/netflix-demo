@@ -8,6 +8,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import './Moviepage.style.css'
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import Spinner from 'react-bootstrap/Spinner';
+
 // 경로 2가지
 // nav바에서 클릭해서 온경우 => popularMovie 보여주기
 // keyword를 입력해서 온경 => keyword와 관련된 영화들을 보여줌
@@ -37,9 +39,15 @@ const Moviepage = ({ item }) => {
     },1000)
     return <h1>{error.message}</h1>
   }
+  
   if (data == undefined) {
     //api로 데이터 받을때 안되는 데이터가 섞여들어와서 제거
-    return <h1>NO DATA</h1>
+    
+    return (
+      <Spinner className='spiner' animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    )
   }
   if(isLoading){
    console.log(isLoading)
@@ -47,7 +55,7 @@ const Moviepage = ({ item }) => {
   if (data.results == undefined) {
     //error요소 제거
     console.log('data', data)
-    return <h1>No data</h1>
+    navigate('/')
   }
   const handlePageClick = (page) => {
     setpage(page.selected + 1)
@@ -57,11 +65,18 @@ const Moviepage = ({ item }) => {
     setpage(1)
   }
   if(data.results.length==1){
-    return<h1>데이터없음</h1>
+    setTimeout(()=>{
+      navigate('/')
+    },2000)
+    return (
+      <Spinner className='spiner' animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    )
   }
-  console.log(data)
+  
   return (
-    <Container>
+    <Container className='movie-page'>
       <Row>
         <Col lg={4} xs={12}>
           <DropdownButton id="dropdown-basic-button" title="인기도순 정렬">

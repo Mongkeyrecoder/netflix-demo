@@ -1,5 +1,5 @@
 import React, { StrictMode, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useMovieDetailQuery } from '../../hooks/useMovieDetail';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useReviewsQuery } from '../../hooks/useRevies';
@@ -49,6 +49,10 @@ const MovieDetailpage = () => {
       )
     }
   })
+  let navigate=useNavigate()
+  if(data[0]===undefined || data[1]==undefined || data[2]==undefined){
+    navigate('/')
+  }
   if (data[0] == undefined || '') {
     return <h1>데이터 없습니다</h1>
   }
@@ -84,6 +88,7 @@ const MovieDetailpage = () => {
       bugetNew += budget[i]
     }
   }
+  console.log('movieDetail ',data)
   let rcmovie = data[2].data.results
   let reviews = data[1].data.results
   return (

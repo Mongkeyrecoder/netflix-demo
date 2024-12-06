@@ -14,3 +14,6 @@ body {
   background-color: black !important;
   color: white;
 }
+.home {
+  position: relative;
+}

@@ -4,6 +4,8 @@ import './UpcomingMovieSlide.style.css'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from '../components/MovieCard/MovieCard';
+import Spinner from 'react-bootstrap/Spinner';
+
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -24,7 +26,9 @@ const responsive = {
 const UpcomingMoviesSlide = () => {
     const { data,isError,error } = useUpcomingMovies();
     if(data==undefined){
-        return <h1>undefined</h1>
+        return <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
     }
     if(isError){
         return <h1>{error.message}</h1>

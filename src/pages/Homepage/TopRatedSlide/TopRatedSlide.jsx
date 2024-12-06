@@ -4,6 +4,8 @@ import useTopRatedQuery from '../../../hooks/useTopRatedMovies'
 import MovieCard from '../components/MovieCard/MovieCard';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import Spinner from 'react-bootstrap/Spinner';
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -22,27 +24,31 @@ const responsive = {
   }
 };
 const TopRatedSlide = () => {
-    const {data}=useTopRatedQuery();
-     
-    if(data==undefined){
-        return <h1>DATA 없음</h1>
-    }
+  const { data } = useTopRatedQuery();
+
+  if (data == undefined) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    )
+  }
   return (
     <div>
       <h3>Top Rated MOVIES</h3>
-        <Carousel
-                infinite={true}
-                centerMode={true}
-                itemClass='movie-slider p-1 custom-item-class'
-                containerClass='carousel-container'
-                responsive={responsive}
-            >
-                {
-                    data?.map((item, i) => {
-                        return <MovieCard item={item} key={i} />
-                    })
-                }
-            </Carousel>
+      <Carousel
+        infinite={true}
+        centerMode={true}
+        itemClass='movie-slider p-1 custom-item-class'
+        containerClass='carousel-container'
+        responsive={responsive}
+      >
+        {
+          data?.map((item, i) => {
+            return <MovieCard item={item} key={i} />
+          })
+        }
+      </Carousel>
     </div>
   )
 }
