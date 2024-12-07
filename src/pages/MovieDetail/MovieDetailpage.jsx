@@ -58,9 +58,7 @@ const MovieDetailpage = () => {
   if (data[0] == undefined) {
     return (
       <div>
-        <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+       
         <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
@@ -69,9 +67,7 @@ const MovieDetailpage = () => {
   if (data[1] == undefined) {
     return (
       <div>
-       <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+       
         <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
@@ -80,9 +76,7 @@ const MovieDetailpage = () => {
   if (data[2] == undefined) {
     return (
       <div>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+      
         <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>

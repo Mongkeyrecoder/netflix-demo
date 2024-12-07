@@ -43,9 +43,7 @@ const Moviepage = ({ item }) => {
 
     return (
       <div>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+      
         <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
@@ -58,9 +56,7 @@ const Moviepage = ({ item }) => {
 
     return (
       <div>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+       
         <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
