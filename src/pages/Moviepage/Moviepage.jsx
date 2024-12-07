@@ -29,7 +29,7 @@ const Moviepage = ({ item }) => {
   useEffect(() => {
     setpage(1)
     setgen(0)
-
+   
   }, [])
 
   useEffect(() => {
@@ -84,6 +84,10 @@ const Moviepage = ({ item }) => {
     refetch()
 
   }
+  const getUD=(ud)=>{
+    setUD(ud);
+    refetch()
+  }
   console.log('moviepage', data)
   if (data.results.length == 1) {
 
@@ -101,8 +105,8 @@ const Moviepage = ({ item }) => {
       <Row>
         <Col lg={4} xs={12}>
           <DropdownButton id="dropdown-basic-button" title="인기도순 정렬">
-            <Dropdown.Item onClick={() => { setUD('UD') }}>인기도순 오름차순</Dropdown.Item>
-            <Dropdown.Item onClick={() => { setUD('Down') }}>인기도순 내림차순</Dropdown.Item>
+            <Dropdown.Item onClick={() => { getUD('UD') }}>인기도순 오름차순</Dropdown.Item>
+            <Dropdown.Item onClick={() => { getUD('Down') }}>인기도순 내림차순</Dropdown.Item>
           </DropdownButton>
           <DropdownButton id="dropdown-basic-button" title="장르별" style={{ marginTop: '20px' }}>
             <Dropdown.Item onClick={() => { genChange(28) }}>Action</Dropdown.Item>

@@ -8,7 +8,7 @@ const fetchSearchMovie = (keyword, page) => {
 }
 
 export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
-   
+    
     return useQuery({
         queryKey: ['movie-search', keyword, page],
         queryFn: () => fetchSearchMovie(keyword, page),
@@ -42,7 +42,22 @@ export const useSearchMovieQuery = ({ keyword, page, UD,genId }) => {
             }
             }
             else {
-                return  result.data
+                
+                if (UD == 'Down') {
+                    copy = copy.sort((a, b) => {
+                        return a.popularity - b.popularity
+                    })
+                    result.data.results=copy
+                    return result.data
+                }
+                else {
+                   copy = copy = copy.sort((a,b)=>{
+                        return b.popularity-a.popularity
+                    })
+                    result.data.results=copy
+                    return result.data
+                }
+                
             }
           
         }
