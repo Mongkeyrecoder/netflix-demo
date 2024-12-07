@@ -39,7 +39,7 @@ const MovieDetailpage = () => {
       }
     ],
     retry: 3,
-    staleTime: 60000,
+
     combine: (results) => {
       return (
         {
@@ -58,8 +58,10 @@ const MovieDetailpage = () => {
   if (data[0] == undefined) {
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
+        <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+        <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
     )
@@ -67,8 +69,10 @@ const MovieDetailpage = () => {
   if (data[1] == undefined) {
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => {data.refetch() }} variant="danger">재호출</Button>
+       <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+        <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
     )
@@ -76,8 +80,10 @@ const MovieDetailpage = () => {
   if (data[2] == undefined) {
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => {data.refetch() }} variant="danger">재호출</Button>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <Button style={{ marginRight: "10px" }} onClick={() => { data.refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
     )

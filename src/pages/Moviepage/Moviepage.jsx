@@ -23,7 +23,7 @@ const Moviepage = ({ item }) => {
   console.log('qqq', keyword)
   let navigate = useNavigate()
   const { data, isLoading, isError, error, refetch } = useSearchMovieQuery({ keyword, page, UD, genId })
-  const gotoHome=()=>{
+  const gotoHome = () => {
     navigate('/')
   }
   useEffect(() => {
@@ -43,8 +43,10 @@ const Moviepage = ({ item }) => {
 
     return (
       <div>
-        <h1>에러입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => { refetch() }} variant="danger">재호출</Button>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
 
@@ -53,24 +55,25 @@ const Moviepage = ({ item }) => {
 
   if (data == undefined) {
     //api로 데이터 받을때 안되는 데이터가 섞여들어와서 제거
-    
+
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => { refetch() }} variant="danger">재호출</Button>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
     )
   }
-  console.log('dd',data)
+  console.log('movie page results', data)
   if (isLoading) {
     console.log(isLoading)
   }
   if (data.results == undefined) {
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => { refetch() }} variant="danger">재호출</Button>
+        <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { gotoHome() }} variant="warning">홈으로 가기</Button>
       </div>
     )
@@ -82,14 +85,16 @@ const Moviepage = ({ item }) => {
   const genChange = (num) => {
     setgen(num)
     setpage(1)
+    refetch()
+
   }
   console.log('moviepage', data)
   if (data.results.length == 1) {
 
     return (
       <div>
-        <h1>없는결과값입니다</h1>
-        <Button style={{marginRight:"10px"}} onClick={() => { refetch() }} variant="danger">재호출</Button>
+
+        <Button style={{ marginRight: "10px" }} onClick={() => { refetch() }} variant="danger">재호출</Button>
         <Button onClick={() => { navigate('/') }} variant="warning">홈으로 가기</Button>
       </div>
     )
